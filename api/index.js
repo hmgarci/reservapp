@@ -1,6 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import authRoute from './routes/auth.js';
+import hotelRoute from './routes/hotels.js';
+import roomRoute from './routes/rooms.js';
+import userRoute from './routes/users.js';
 
 dotenv.config();
 
@@ -23,6 +27,12 @@ mongoose.connection.on('connected', ()=>{
 mongoose.connection.on('disconnected', ()=>{
     console.log('The database was diconnected');
 })
+
+//middleware
+app.use("/auth", authRoute);
+app.use("/hotels", hotelRoute);
+app.use("/rooms", roomRoute);
+app.use("/user", userRoute);
 
 
 app.get('/', (req, res)=> {
