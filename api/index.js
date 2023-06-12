@@ -1,14 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import authRoute from './routes/auth.js';
-import hotelRoute from './routes/hotels.js';
-import roomRoute from './routes/rooms.js';
-import userRoute from './routes/users.js';
+import authRoute from './routes/auth.js';   
+import candidato from './routes/candidatos.js';   
 
 dotenv.config();
 
 const app = express();
+app.use(express.json())
 
 const connect = async () => {
     try {
@@ -30,9 +29,7 @@ mongoose.connection.on('disconnected', ()=>{
 
 //middleware
 app.use("/auth", authRoute);
-app.use("/hotels", hotelRoute);
-app.use("/rooms", roomRoute);
-app.use("/user", userRoute);
+app.use("/candidato", candidato);
 
 
 app.get('/', (req, res)=> {
