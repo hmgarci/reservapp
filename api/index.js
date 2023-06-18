@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import authRoute from './routes/auth.js';   
 import candidato from './routes/candidatos.js';   
+import eleccion from './routes/elecciones.js';
+import ciudadano from './routes/ciudadanos.js';
 
 dotenv.config();
 
@@ -30,6 +32,8 @@ mongoose.connection.on('disconnected', ()=>{
 //middleware
 app.use("/auth", authRoute);
 app.use("/candidato", candidato);
+app.use("/eleccion", eleccion);
+app.use("/ciudadano", ciudadano);
 
 
 app.get('/', (req, res)=> {
