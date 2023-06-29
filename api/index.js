@@ -34,6 +34,9 @@ app.use("/auth", authRoute);
 app.use("/candidato", candidato);
 app.use("/eleccion", eleccion);
 app.use("/ciudadano", ciudadano);
+app.use((err, requ, res, next)=>{
+    return res.status(500).json({message: "Internal server error"})
+});
 
 
 app.get('/', (req, res)=> {

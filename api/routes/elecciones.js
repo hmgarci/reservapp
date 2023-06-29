@@ -12,13 +12,14 @@ router.get("/", async (req, res)=> {
     }
 })
 
-router.get("/:id", async (req, res)=> {
+router.get("/:id", async (req, res, next)=> {
     try {
         const { id } = req.params;
         const eleccion = await Eleccion.findById(id);
         res.json(eleccion)
     } catch (error) {
-        console.error("Error getting the eleccion " + error)
+        //console.error("Error getting the eleccion " + error)
+        next(error, next);
     }
 })
 
