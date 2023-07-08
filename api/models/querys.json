@@ -2,3 +2,4 @@ db.candidatos.deleteOne({name:"Andres"})
 db.candidatos.updateOne({name:"Andres"}, {$set: {age:"25"}})
 db.candidatos.insertOne({_id:"123", name:"Carlos", politicalParty:"Partido vas"}, lastname:"Morales", id:"1004", idCiudadano: "649d023f3fc1544638178380")
 db.getCollection("ciudadanos").aggregate({$lookup:{from:"candidatos",localField:"id",foreignField:"idCiudadano",as : "candidatos"}})
+loginelecciones

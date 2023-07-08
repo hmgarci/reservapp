@@ -5,6 +5,7 @@ import authRoute from './routes/auth.js';   
 import candidato from './routes/candidatos.js';   
 import eleccion from './routes/elecciones.js';
 import ciudadano from './routes/ciudadanos.js';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use("/auth", authRoute);
 app.use("/candidato", candidato);
 app.use("/eleccion", eleccion);
 app.use("/ciudadano", ciudadano);
+app.use(cookieParser())
 app.use((err, requ, res, next)=>{
     return res.status(500).json({message: "Internal server error"})
 });
