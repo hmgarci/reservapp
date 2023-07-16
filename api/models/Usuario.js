@@ -6,6 +6,8 @@ const usuarioSchema = new Schema({
     name: {type: String},
     email: {type: String, require: [true, "The email is require"], unique: true},
     password: {type: String, require: [true, "The email is require"]},
+    admin: {type: Boolean, default:false},
+
     
 }, {
     timestamps: true

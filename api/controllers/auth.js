@@ -9,6 +9,7 @@ export const registerUsuario = async (req, res, next) =>{
 
         const newUser = new Usuario({
             name: req.body.name,
+            admin:req.body.admin,
             email: req.body.email,
             password: newPassword
             
@@ -31,7 +32,7 @@ export const loginUsuario = async (req, res, next) =>{
         if(!isPasswordCorrect) return res.status(401).json({"Error":"The credentials are not correct"});
         const {password, createdAt, updatedAt, ... other} = user._doc;
         res
-        .cookie("acces_token", generateToken(user), {httpOnly: true})
+        .cookie("access_token", generateToken(user), {httpOnly: true})
         .status(200).json({...other});
     } catch (error) {
         console.log(error)
@@ -40,7 +41,7 @@ export const loginUsuario = async (req, res, next) =>{
 }
 
 const generateToken = (user)=>{
-    const token = jwt.sign({id: user._id, email: user.email}, process.env.JWT);
+    const token = jwt.sign({id: user._id, email: user.email, admin: user.admin}, process.env.JWT);
     return token;
 
 }

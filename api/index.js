@@ -31,13 +31,13 @@ mongoose.connection.on('disconnected', ()=>{
 })
 
 //middleware
+app.use(cookieParser())
 app.use("/auth", authRoute);
 app.use("/candidato", candidato);
 app.use("/eleccion", eleccion);
 app.use("/ciudadano", ciudadano);
-app.use(cookieParser())
 app.use((err, requ, res, next)=>{
-    return res.status(500).json({message: "Internal server error"})
+    return res.status(err.status).json({message: err.message, status: err.status})
 });
 
 
